@@ -187,13 +187,13 @@ def build_message(portfolio: Dict[str, float], prices: Dict[str, Dict], history:
     lines.append(f"🇺🇸 <b>USD:</b> {format_usd(total_usd)}")
     if prev_usd is not None:
         diff_usd = total_usd - prev_usd
-        lines.append(f"   ↳ <i>Változás tegnap óta: {format_diff_usd(diff_usd)}</i>")
+        lines.append(f"   ↳ <i>Értékváltozás: {format_diff_usd(diff_usd)}</i>")
     
     # HUF Kiírás
     lines.append(f"🇭🇺 <b>HUF:</b> {format_huf(total_huf)}")
     if prev_huf is not None:
         diff_huf = total_huf - prev_huf
-        lines.append(f"   ↳ <i>Változás tegnap óta: {format_diff_huf(diff_huf)}</i>")
+        lines.append(f"   ↳ <i>Értékváltozás: {format_diff_huf(diff_huf)}</i>")
 
     lines.append("")
     lines.append("🔗 <i>Adatok forrása: <a href='https://www.coingecko.com/'>CoinGecko</a></i>")
