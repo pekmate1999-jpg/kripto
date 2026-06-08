@@ -134,8 +134,20 @@ def format_diff_usd(diff: float, prev: float) -> str:
     else:
         return f"📉 -${abs(diff):,.2f}{pct_str}"
 
+def format_diff_usd(diff: float, prev: float) -> str:
+    """Megformázza az USD különbséget és a százalékot (pöttyel és +/- jelekkel)."""
+    pct_str = ""
+    if prev and prev > 0:
+        pct = (diff / prev) * 100
+        pct_str = f" ({pct:+.2f}%)"
+        
+    if diff >= 0:
+        return f"🟢 +${diff:,.2f}{pct_str}"
+    else:
+        return f"🔴 -${abs(diff):,.2f}{pct_str}"
+
 def format_diff_huf(diff: float, prev: float) -> str:
-    """Megformázza a HUF különbséget és a százalékot (+/- jelekkel)."""
+    """Megformázza a HUF különbséget és a százalékot (pöttyel és +/- jelekkel)."""
     pct_str = ""
     if prev and prev > 0:
         pct = (diff / prev) * 100
@@ -143,9 +155,9 @@ def format_diff_huf(diff: float, prev: float) -> str:
         
     formatted_val = f"{abs(diff):,.0f}".replace(",", " ")
     if diff >= 0:
-        return f"📈 +{formatted_val} Ft{pct_str}"
+        return f"🟢 +{formatted_val} Ft{pct_str}"
     else:
-        return f"📉 -{formatted_val} Ft{pct_str}"
+        return f"🔴 -{formatted_val} Ft{pct_str}"
 
 # ----------------------------- ÜZENET ÉPÍTÉS ---------------------------------
 def build_message(portfolio: Dict[str, float], prices: Dict[str, Dict], history: Dict[str, Optional[float]]) -> Tuple[str, float, float]:
